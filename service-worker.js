@@ -22,6 +22,8 @@ self.addEventListener('activate', e => {
           .filter(cacheName => cacheName !== CACHE_KEY)
           .map(cacheName => caches.delete(cacheName))
       );
+    }).then(() => {
+      return self.clients.claim();
     }).catch(e => console.error(e))
   );
 });
@@ -29,7 +31,12 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   e.respondWith(
     caches.open(CACHE_KEY).then(cache => {
-      return cache.match(e.request);
-    })
+      return cache.match(e.request).then(response => {
+        return response || fetch(e.request).then(response => {
+          cache.put(e.request, response);
+          return response;
+        });
+      });
+    }).catch(e => console.error(e))
   );
 });
