@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>color</title>
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body>
+    <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('service-worker.js', {
+          scope: '/color/'
+        }).catch(error => console.error(error));
+      }
+    </script>
+    <script src="clipboard.min.js"></script>
+    <script src="d3.v3.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
