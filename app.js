@@ -153,7 +153,7 @@ columns.each(function(column) {
     });
 });
 
-const clipboard = new Clipboard('.Cell');
+const clipboard = new ClipboardJS('.Cell');
 
 clipboard.on('success', e => {
   e.trigger.classList.add('Cell--copied');
