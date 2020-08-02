@@ -6,13 +6,6 @@
     <link rel="stylesheet" href="app.css">
   </head>
   <body>
-    <script>
-      if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('service-worker.js', {
-          scope: '/color-picker/'
-        }).catch(error => console.error(error));
-      }
-    </script>
     <script src="clipboard.min.js"></script>
     <script src="d3.v3.min.js"></script>
     <script src="app.js"></script>
